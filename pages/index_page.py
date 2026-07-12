@@ -46,7 +46,7 @@ layout = html.Div([
                 ],
                 id="tapio-guide-popover",
                 target="tapio-guide-btn",
-                trigger="click",
+                trigger="legacy",
                 placement="bottom-end",
                 style={'width': '290px', 'zIndex': '1050', 'boxShadow': '0 4px 15px rgba(0,0,0,0.15)', 'border': '1px solid #F0E8D8', 'borderRadius': '8px'}
             )
@@ -166,13 +166,3 @@ def update_line_chart(selected_countries):
         font=dict(family='Inter')
     )
     return fig
-
-@callback(
-    Output('tapio-guide-popover', 'is_open'),
-    Input('tapio-guide-btn', 'n_clicks'),
-    State('tapio-guide-popover', 'is_open')
-)
-def toggle_tapio_guide(n_clicks, is_open):
-    if n_clicks:
-        return not is_open
-    return is_open
