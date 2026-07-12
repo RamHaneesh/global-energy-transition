@@ -38,12 +38,6 @@ MAP_METRICS = {
         'color_scale': 'Reds',
         'unit': 'tonnes',
         'range': [df_all['co2_per_capita'].min(), df_all['co2_per_capita'].max()]
-    },
-    'renewable_share_change': {
-        'label': 'Renewable Growth (pp)',
-        'color_scale': 'Blues',
-        'unit': 'pp',
-        'range': [df_all['renewable_share_change'].min(), df_all['renewable_share_change'].max()]
     }
 }
 
