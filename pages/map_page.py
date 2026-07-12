@@ -55,12 +55,14 @@ def update_map(selected_year, selected_metric):
 
     fig = px.choropleth(
         dff, locations='iso_code', color=selected_metric, hover_name='country',
-        hover_data={'renewables_share_energy': ':.1f', 'co2_per_capita': ':.2f', 'iso_code': False},
+        hover_data={'renewables_share_energy': ':.1f', 'co2_per_capita': ':.2f',
+                    'renewable_share_change': ':.1f', 'iso_code': False},
         color_continuous_scale=metric_info['color_scale'],
         range_color=metric_info['range'],
         labels={
             'renewables_share_energy': 'Renewable Share (%)',
-            'co2_per_capita': 'CO₂ per Capita (t)'
+            'co2_per_capita': 'CO₂ per Capita (t)',
+            'renewable_share_change': 'Renewable Growth (pp)'
         }
     )
     fig.update_layout(
