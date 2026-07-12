@@ -52,6 +52,7 @@ The application leverages academic modeling frameworks (such as the **Tapio Deco
 │   └── radar_page.py       # Task 4.6 layout & callbacks
 │
 ├── requirements.txt        # Python dependency specifications
+├── owid-energy-data.csv    # Original Dataset
 └── README.md               # Setup and documentation guide
 ```
 
