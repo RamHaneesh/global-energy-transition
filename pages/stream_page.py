@@ -11,10 +11,10 @@ layout = html.Div([
             dcc.RadioItems(
                 id='stream-view-mode',
                 options=[
-                    {'label': 'Absolute (TWh)', 'value': 'absolute'},
-                    {'label': 'Share (%)',       'value': 'percent'}
+                    {'label': 'Share (%)',       'value': 'percent'},
+                    {'label': 'Absolute (TWh)', 'value': 'absolute'}
                 ],
-                value='absolute',
+                value='percent',
                 inline=True,
                 inputStyle={'marginRight': '4px', 'marginLeft': '12px'},
                 labelStyle={'fontSize': '12px', 'color': '#5C3D18'},
