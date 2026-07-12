@@ -100,14 +100,9 @@ def update_line_chart(selected_countries):
                       annotation_text="Weak Decoupling (0 ≤ β < 0.8)" if (min(0.8, ymax) - max(0.0, ymin)) > 0.15 else "",
                       annotation_position="bottom left",
                       annotation_font=dict(size=9, color="#8B6430"))
-    if ymin < 1.2 and ymax > 0.8:
-        fig.add_hrect(y0=max(0.8, ymin), y1=min(1.2, ymax), fillcolor="rgba(214, 39, 40, 0.04)", line_width=0,
-                      annotation_text="Coupled (0.8 ≤ β ≤ 1.2)" if (min(1.2, ymax) - max(0.8, ymin)) > 0.08 else "",
-                      annotation_position="bottom left",
-                      annotation_font=dict(size=9, color="#8B3A3A"))
-    if ymax > 1.2:
-        fig.add_hrect(y0=max(1.2, ymin), y1=ymax, fillcolor="rgba(214, 39, 40, 0.08)", line_width=0,
-                      annotation_text="Negative Decoupling (β > 1.2)" if (ymax - max(1.2, ymin)) > 0.15 else "",
+    if ymax > 0.8:
+        fig.add_hrect(y0=max(0.8, ymin), y1=ymax, fillcolor="rgba(214, 39, 40, 0.06)", line_width=0,
+                      annotation_text="Coupled (β ≥ 0.8)" if (ymax - max(0.8, ymin)) > 0.15 else "",
                       annotation_position="bottom left",
                       annotation_font=dict(size=9, color="#8B3A3A"))
 
@@ -117,9 +112,6 @@ def update_line_chart(selected_countries):
                       line=dict(color='#9B8470', width=1.2, dash='dash'))
     if ymin < 0.8 < ymax:
         fig.add_shape(type='line', x0=2005, y0=0.8, x1=2022, y1=0.8,
-                      line=dict(color='#9B8470', width=1.2, dash='dash'))
-    if ymin < 1.2 < ymax:
-        fig.add_shape(type='line', x0=2005, y0=1.2, x1=2022, y1=1.2,
                       line=dict(color='#9B8470', width=1.2, dash='dash'))
 
     for i, country in enumerate(selected_countries):
