@@ -142,10 +142,11 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
         else:
             fg_df = fg_df.sort_values('country')
 
-        avg_df = pd.DataFrame([ref_avg])
-
-        # Combine in order: avg -> fg (so target countries are on top)
-        df_plot = pd.concat([avg_df, fg_df], ignore_index=True)
+        if display_mode == 'selected':
+            avg_df = pd.DataFrame([ref_avg])
+            df_plot = pd.concat([avg_df, fg_df], ignore_index=True)
+        else:
+            df_plot = fg_df
 
     # 3. Assign color IDs and resolve color scale
     # If selected mode: 0 = Global Average, 1, 2, 3... = individual colors
@@ -204,10 +205,11 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
     elif display_mode == 'averages':
         n_colors = 3
     else:
-        n_colors = 2
+        n_colors = 1
 
     if n_colors == 1:
-        colorscale = [[0, get_color(0)], [1, get_color(0)]]
+        group_color = get_color(1)
+        colorscale = [[0, group_color], [1, group_color]]
     else:
         colorscale = []
         for i in range(n_colors):
@@ -295,15 +297,6 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
             }),
             html.Span(name_map[display_mode], style={'color': '#5C3D18', 'fontWeight': '600'})
         ], style={'display': 'flex', 'alignItems': 'center', 'marginRight': '16px', 'padding': '2px 0'}))
-
-        # Add Global Average
-        legend_children.append(html.Div([
-            html.Div(style={
-                'background': get_color(0), 'width': '8px', 'height': '8px',
-                'borderRadius': '50%', 'marginRight': '6px', 'flexShrink': 0
-            }),
-            html.Span('Global Average', style={'color': '#5C3D18', 'fontWeight': '600'})
-        ], style={'display': 'flex', 'alignItems': 'center', 'padding': '2px 0'}))
 
     fig.update_layout(
         plot_bgcolor='white', paper_bgcolor='white',
