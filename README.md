@@ -9,7 +9,7 @@ The application leverages academic modeling frameworks (such as the **Tapio Deco
 ## 🚀 Key Features
 
 *   **Task 4.1: Global Transition Map**
-    *   An animated choropleth world map displaying core transition indicators (Renewable Share %, CO₂ per Capita, and Renewable Growth pp since 2000).
+    *   An animated choropleth world map displaying core transition indicators (Renewable Share %, CO₂ per Capita.
     *   Includes a Play/Pause animation controller showing the global geographic evolution year-by-year.
 *   **Task 4.2: Energy Mix Streamgraph**
     *   A stacked streamgraph tracking global energy consumption by source (Coal, Oil, Gas, Nuclear, Hydro, Solar, Wind) from 2000 to 2022.
