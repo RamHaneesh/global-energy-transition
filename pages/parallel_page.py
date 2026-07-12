@@ -63,7 +63,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
     # 1. Filter valid countries for 2022 (max renewables > 0)
     valid_df_2022 = df_2022[df_2022['country'].isin(_valid_countries)].copy()
 
-    cols_to_plot = ['renewables_share_energy', 'renewable_share_change', 'co2_per_capita',
+    cols_to_plot = ['gdp_per_capita', 'renewable_share_change', 'co2_per_capita',
                     'per_capita_electricity', 'fossil_share_energy']
 
     valid_df_2022 = valid_df_2022.dropna(subset=cols_to_plot, how='all')
@@ -73,7 +73,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
     if display_mode == 'averages':
         ref_avg = {
             'country': 'Global Median',
-            'renewables_share_energy': valid_df_2022['renewables_share_energy'].median(),
+            'gdp_per_capita':          valid_df_2022['gdp_per_capita'].median(),
             'renewable_share_change':  valid_df_2022['renewable_share_change'].median(),
             'co2_per_capita':          valid_df_2022['co2_per_capita'].median(),
             'per_capita_electricity':  valid_df_2022['per_capita_electricity'].median(),
@@ -82,7 +82,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
     else:
         ref_avg = {
             'country': 'Global Average',
-            'renewables_share_energy': valid_df_2022['renewables_share_energy'].mean(),
+            'gdp_per_capita':          valid_df_2022['gdp_per_capita'].mean(),
             'renewable_share_change':  valid_df_2022['renewable_share_change'].mean(),
             'co2_per_capita':          valid_df_2022['co2_per_capita'].mean(),
             'per_capita_electricity':  valid_df_2022['per_capita_electricity'].mean(),
@@ -98,7 +98,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
 
         strong_median = {
             'country': 'Strong Decoupled Median',
-            'renewables_share_energy': strong_df['renewables_share_energy'].median() if not strong_df.empty else 0,
+            'gdp_per_capita':          strong_df['gdp_per_capita'].median() if not strong_df.empty else 0,
             'renewable_share_change':  strong_df['renewable_share_change'].median() if not strong_df.empty else 0,
             'co2_per_capita':          strong_df['co2_per_capita'].median() if not strong_df.empty else 0,
             'per_capita_electricity':  strong_df['per_capita_electricity'].median() if not strong_df.empty else 0,
@@ -107,7 +107,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
 
         weak_median = {
             'country': 'Weak Decoupled Median',
-            'renewables_share_energy': weak_df['renewables_share_energy'].median() if not weak_df.empty else 0,
+            'gdp_per_capita':          weak_df['gdp_per_capita'].median() if not weak_df.empty else 0,
             'renewable_share_change':  weak_df['renewable_share_change'].median() if not weak_df.empty else 0,
             'co2_per_capita':          weak_df['co2_per_capita'].median() if not weak_df.empty else 0,
             'per_capita_electricity':  weak_df['per_capita_electricity'].median() if not weak_df.empty else 0,
@@ -116,7 +116,7 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
 
         coupled_median = {
             'country': 'Coupled Median',
-            'renewables_share_energy': coupled_df['renewables_share_energy'].median() if not coupled_df.empty else 0,
+            'gdp_per_capita':          coupled_df['gdp_per_capita'].median() if not coupled_df.empty else 0,
             'renewable_share_change':  coupled_df['renewable_share_change'].median() if not coupled_df.empty else 0,
             'co2_per_capita':          coupled_df['co2_per_capita'].median() if not coupled_df.empty else 0,
             'per_capita_electricity':  coupled_df['per_capita_electricity'].median() if not coupled_df.empty else 0,
@@ -233,8 +233,8 @@ def update_parallel_plot(selected_countries, display_mode, reset_counter):
              tickvals=[0, 5, 10, 15, 20, 25], ticktext=['0', '5t', '10t', '15t', '20t', '25t']),
         dict(range=[0, 30000], label='Electricity per Capita (kWh)', values=df_plot['per_capita_electricity'].clip(upper=30000),
              tickvals=[0, 5000, 10000, 15000, 20000, 25000, 30000], ticktext=['0', '5k', '10k', '15k', '20k', '25k', '30k']),
-        dict(range=[0, 100], label='Renewable Share (%)', values=df_plot['renewables_share_energy'],
-             tickvals=[0, 20, 40, 60, 80, 100], ticktext=['0%', '20%', '40%', '60%', '80%', '100%']),
+        dict(range=[0, 100000], label='GDP per Capita ($)', values=df_plot['gdp_per_capita'].clip(upper=100000),
+             tickvals=[0, 20000, 40000, 60000, 80000, 100000], ticktext=['0', '$20k', '$40k', '$60k', '$80k', '$100k']),
         dict(range=[-10, 40], label='Renew. Growth (pp since 2000)', values=df_plot['renewable_share_change'].clip(lower=-10, upper=40),
              tickvals=[-10, 0, 10, 20, 30, 40], ticktext=['-10pp', '0', '10pp', '20pp', '30pp', '40pp']),
     ]
